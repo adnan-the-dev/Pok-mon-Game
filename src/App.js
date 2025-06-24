@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CardGrid from "./components/CardGrid";
+import { ClipLoader } from "react-spinners"; // stylish spinner
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
+  const [loading, setLoading] = useState(true); // new state
 
   useEffect(() => {
     const fetchPokemon = async () => {
+      setLoading(true); // Start loading
       const data = [];
 
       for (let i = 1; i <= 15; i++) {
@@ -29,6 +32,7 @@ function App() {
       }
 
       setPokemon(shuffleArray(data));
+      setLoading(false); // Stop loading
     };
 
     fetchPokemon();
@@ -70,6 +74,7 @@ function App() {
       >
         🎮 Pokémon Memory Game
       </h1>
+
       <h2
         style={{
           fontSize: "1.8rem",
@@ -83,7 +88,15 @@ function App() {
       >
         🧠 Score: {score}
       </h2>
-      {gameOver ? (
+
+      {loading ? (
+        <div style={{ marginTop: "50px" }}>
+          <ClipLoader size={100} color="#ff6a00" loading={loading} />
+          <p style={{ marginTop: "20px", fontSize: "18px", color: "#777" }}>
+            Loading Pokémon...
+          </p>
+        </div>
+      ) : gameOver ? (
         <div>
           <h2 style={{ color: "red" }}>Game Over!</h2>
           <button
