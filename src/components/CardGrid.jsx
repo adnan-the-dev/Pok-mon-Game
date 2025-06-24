@@ -5,10 +5,8 @@ const CardGrid = ({ cards, onCardClick }) => {
     <div
       style={{
         display: "grid",
-        // gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", // bigger cards
-        gridTemplateColumns: "auto auto auto auto auto", // bigger cards
+        gridTemplateColumns: "auto auto auto auto auto",
         gap: "24px",
-        // maxWidth: "1000px",
         margin: "auto",
         padding: "20px",
       }}
@@ -16,7 +14,7 @@ const CardGrid = ({ cards, onCardClick }) => {
       {cards.map((card) => (
         <div
           key={card.id}
-          onClick={() => onCardClick(card.id)}
+          onClick={() => onCardClick(card.id, card.name)} // Pass name for sound
           style={{
             border: "2px solid transparent",
             borderRadius: "16px",

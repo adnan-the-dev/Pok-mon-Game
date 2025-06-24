@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CardGrid from "./components/CardGrid";
-import { ClipLoader } from "react-spinners"; // stylish spinner
+import { ClipLoader } from "react-spinners";
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
-  const [loading, setLoading] = useState(true); // new state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPokemon = async () => {
-      setLoading(true); // Start loading
+      setLoading(true);
       const data = [];
 
       for (let i = 1; i <= 15; i++) {
@@ -32,20 +32,27 @@ function App() {
       }
 
       setPokemon(shuffleArray(data));
-      setLoading(false); // Stop loading
+      setLoading(false);
     };
 
     fetchPokemon();
   }, []);
 
-  const handleCardClick = (id) => {
+  const handleCardClick = (id, name) => {
     if (clickedCards.includes(id)) {
       setGameOver(true);
     } else {
+      playCry(name);
       setClickedCards([...clickedCards, id]);
       setScore(score + 1);
       setPokemon(shuffleArray([...pokemon]));
     }
+  };
+
+  const playCry = (name) => {
+    const cryURL = `https://play.pokemonshowdown.com/audio/cries/${name}.mp3`;
+    const audio = new Audio(cryURL);
+    audio.play().catch((err) => console.error("Audio error:", err));
   };
 
   const resetGame = () => {
@@ -78,7 +85,6 @@ function App() {
       <h2
         style={{
           fontSize: "1.8rem",
-          color: "#333",
           marginBottom: "20px",
           background: "linear-gradient(135deg, #2193b0, #6dd5ed)",
           WebkitBackgroundClip: "text",
