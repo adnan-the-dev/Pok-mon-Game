@@ -9,6 +9,8 @@ const CardGrid = ({ cards, onCardClick }) => {
         gap: "24px",
         margin: "auto",
         padding: "20px",
+        // border:'1px solid red',
+        // backgroundColor:"gray"
       }}
     >
       {cards.map((card) => (
