@@ -42,7 +42,7 @@ const CardGrid = ({ cards, onCardClick }) => {
             alt={card.name}
             style={{
               width: "100%",
-              height: "140px",
+              height: "200px",
               objectFit: "contain",
               marginBottom: "12px",
               filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))",
