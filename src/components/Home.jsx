@@ -25,7 +25,7 @@ function Home() {
       setLoading(true);
       const data = [];
 
-      for (let i = 1; i <= 15; i++) {
+      for (let i = 1; i <= 16; i++) {
         try {
           const response = await axios.get(
             `https://pokeapi.co/api/v2/pokemon/${i}`

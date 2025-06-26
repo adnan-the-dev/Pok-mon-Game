@@ -5,19 +5,19 @@ const CardGrid = ({ cards, onCardClick }) => {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "auto auto auto auto auto",
+        gridTemplateColumns: "repeat(4, 1fr)",
         gap: "24px",
-        margin: "auto",
         padding: "20px",
-        // border:'1px solid red',
-        // backgroundColor:"gray"
+        justifyContent: "center",
       }}
     >
       {cards.map((card) => (
         <div
           key={card.id}
-          onClick={() => onCardClick(card.id, card.name)} // Pass name for sound
+          onClick={() => onCardClick(card.id, card.name)}
           style={{
+            width: "180px",
+            height: "260px",
             border: "2px solid transparent",
             borderRadius: "16px",
             padding: "16px",
@@ -27,7 +27,6 @@ const CardGrid = ({ cards, onCardClick }) => {
             background:
               "linear-gradient(#fff, #fff) padding-box, linear-gradient(135deg, #ff6a00, #ee0979) border-box",
             textAlign: "center",
-            transform: "scale(1)",
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.transform = "scale(1.05)";
@@ -43,7 +42,7 @@ const CardGrid = ({ cards, onCardClick }) => {
             alt={card.name}
             style={{
               width: "100%",
-              height: "160px",
+              height: "140px",
               objectFit: "contain",
               marginBottom: "12px",
               filter: "drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))",
