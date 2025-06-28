@@ -1,11 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import GameContainer from "./components/GameContainer";
 import { gamesList } from "./games";
+
 function App() {
-  const [selectedGame, setSelectedGame] = useState(gamesList[0]);
+  const [selectedGame, setSelectedGame] = useState(null);
   const navigate = useNavigate();
 
   const handleSelect = (game) => {
@@ -20,7 +20,15 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<GameContainer selectedGame={selectedGame} />}
+            element={
+              selectedGame ? (
+                <GameContainer selectedGame={selectedGame} />
+              ) : (
+                <div style={{ padding: "40px", fontSize: "24px", color: "#666" }}>
+                  🎮 Please select a game from the sidebar to begin playing!
+                </div>
+              )
+            }
           />
           {gamesList.map((game) => (
             <Route
