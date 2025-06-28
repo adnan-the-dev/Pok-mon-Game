@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import ScoreBoard from "./ScoreBoard";
 import axios from "axios";
 import { ClipLoader } from "react-spinners";
-import CardGrid from "./CardGrid";
-function Home() {
+import CardGrid from "../components/CardGrid";
+import ScoreBoard from "../components/ScoreBoard";
+function Pokemoon() {
   const [pokemon, setPokemon] = useState([]);
   const [clickedCards, setClickedCards] = useState([]);
   const [score, setScore] = useState(0);
@@ -209,7 +209,7 @@ function Home() {
           <CardGrid cards={pokemon} onCardClick={handleCardClick} />
         )}
       </div>
-      <div style={{ width: "20%" }}>
+      <div>
         <ScoreBoard
           scoreboard={scoreboard}
           handleClearScores={handleClearScores}
@@ -219,4 +219,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Pokemoon;
