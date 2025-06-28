@@ -17,7 +17,7 @@ export default function ColorGuessGame() {
   const [message, setMessage] = useState("");
 
   const generateColors = () => {
-    const newColors = Array.from({ length: 6 }, generateRandomColor);
+    const newColors = Array.from({ length: 8 }, generateRandomColor);
     const picked = newColors[getRandomNumber(0, newColors.length - 1)];
     setColors(newColors);
     setTargetColor(picked);
@@ -55,57 +55,100 @@ export default function ColorGuessGame() {
           backdropFilter: "blur(10px)",
           background: "rgba(255, 255, 255, 0.3)",
           borderRadius: "24px",
-          padding: "40px",
+          padding: "10px",
           boxShadow: "0 12px 32px rgba(0,0,0,0.1)",
           textAlign: "center",
-          maxWidth: "420px",
           width: "100%",
+        border:'1px solid red'
+
         }}
       >
-        <h1
-          style={{
-            fontSize: "24px",
-            color: "#333",
-            marginBottom: "8px",
-            fontWeight: "600",
-          }}
-        >
-          Guess this color:
-        </h1>
-        <div
-          style={{
-            fontSize: "20px",
-            fontWeight: "600",
-            background: "#fff",
-            padding: "10px 16px",
-            borderRadius: "12px",
-            display: "inline-block",
-            marginBottom: "16px",
-            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-            color: "#222",
-          }}
-        >
-          {targetColor}
-        </div>
-        <h2 style={{ fontSize: "18px", marginBottom: "8px" }}>
-          Score: <span style={{ fontWeight: "600" }}>{score}</span>
-        </h2>
-        <div
-          style={{
-            height: "28px",
-            fontSize: "16px",
-            fontWeight: "500",
-            color: message.includes("Correct") ? "#4CAF50" : "#F44336",
-            marginBottom: "20px",
-            transition: "0.3s",
-          }}
-        >
-          {message}
-        </div>
+   <h1
+  style={{
+    fontSize: "3rem",
+    fontWeight: "800",
+    background: "linear-gradient(90deg, rgb(255, 144, 169), rgb(255, 127, 105)) padding-box text",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    marginBottom: "20px",
+    fontFamily: `'Poppins', 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif`,
+    letterSpacing: "1px",
+  }}
+>
+  🎨 Guess This Color
+</h1>
+
+
+<div
+  style={{
+    fontSize: "22px",
+    fontWeight: "700",
+    background: "rgba(255, 255, 255, 0.2)",
+    padding: "12px 24px",
+    borderRadius: "16px",
+    display: "inline-block",
+    marginBottom: "20px",
+    boxShadow: "inset 0 0 6px rgba(255,255,255,0.3), 0 4px 15px rgba(0,0,0,0.2)",
+    color: "#111",
+    backdropFilter: "blur(10px)",
+    border: "1px solid rgba(255, 255, 255, 0.3)",
+  }}
+>
+  {targetColor}
+</div>
+
+<h2
+  style={{
+    fontSize: "20px",
+    fontWeight: "600",
+    color: "#333",
+    marginBottom: "12px",
+  }}
+>
+  🏆 Score:{" "}
+  <span
+    style={{
+      fontWeight: "700",
+      background: "#f9f9f9",
+      padding: "4px 12px",
+      borderRadius: "8px",
+      boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+      color: "#333",
+    }}
+  >
+    {score}
+  </span>
+</h2>
+
+<div
+  style={{
+    minHeight: "32px",
+    fontSize: "16px",
+    fontWeight: "600",
+    padding: "6px 12px",
+    color: message.includes("Correct") ? "#2ecc71" : "#e74c3c",
+    background: message
+      ? "rgba(255,255,255,0.3)"
+      : "transparent",
+    borderRadius: "10px",
+    transition: "all 0.3s ease",
+    boxShadow:
+      message && message.includes("Correct")
+        ? "0 0 10px rgba(46, 204, 113, 0.5)"
+        : message
+        ? "0 0 10px rgba(231, 76, 60, 0.5)"
+        : "none",
+  }}
+>
+  {message}
+</div>
+
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(3, 100px)",
+            gridTemplateColumns: "repeat(4, 200px)",
+            // gridTemplateColumns: "repeat(3, 100px)",
             gap: "20px",
             justifyContent: "center",
           }}
@@ -116,8 +159,8 @@ export default function ColorGuessGame() {
               onClick={() => handleClick(color)}
               style={{
                 backgroundColor: color,
-                width: "100px",
-                height: "100px",
+                width: "200px",
+                height: "200px",
                 borderRadius: "20px",
                 cursor: "pointer",
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
